@@ -15,11 +15,11 @@ const sequelize = new Sequelize('fec', 'cadenwang', 'cadenwang', {
 })
 
 sequelize.authenticate()
-         .then(() => {
-           console.log('Connected to DB');
-         })
-         .catch(err => {
-           console.log('Failed to connect to DB');
-         });
+  .then(() => {
+    console.log('Connected to DB');
+  })
+  .catch(err => {
+    console.log('Failed to connect to DB');
+  });
 
 module.exports = sequelize;

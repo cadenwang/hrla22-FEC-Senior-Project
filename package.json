@@ -1,5 +1,5 @@
 {
-  "name": "FEC-project-hrla22",
+  "name": "fec-project-hrla22",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -26,7 +26,8 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "sequelize": "^4.37.10",
-    "sequelize-cli": "^4.0.0"
+    "sequelize-cli": "^4.0.0",
+    "styled-components": "^3.3.2"
   },
   "devDependencies": {
     "webpack": "^4.10.2",
