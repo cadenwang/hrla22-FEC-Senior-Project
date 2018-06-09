@@ -34,12 +34,9 @@ const I = styled.i`
 `
 
 const Votes = (props) => {
-
-
-
   return (
     <Ul>
-      <CaretLi>
+      <CaretLi style={{'color': props.renderColor('up')}} onClick={props.renderUpvote}>
         <I className="fas fa-caret-up"></I>
       </CaretLi>
       <Li>
@@ -48,7 +45,7 @@ const Votes = (props) => {
       <VotesLi>
         votes
       </VotesLi>
-      <CaretLi>
+      <CaretLi style={{'color': props.renderColor('down')}} onClick={props.renderDownvote}>
         <I className="fas fa-caret-down"></I>
       </CaretLi>
     </Ul>

@@ -30,15 +30,15 @@ export default class App extends React.Component {
       questions: [],
       answers: [],
     }
-  }
-
-  componentDidMount() {
     this.getQuestionData();
   }
 
   getQuestionData() {
     this.getAnswerData();
     axios.get('/questions').then(data => {
+      data.data.sort((a, b) => {
+        return a.id - b.id
+      })
       this.setState({
         questions: data.data,
         answers: this.state.answers
@@ -67,7 +67,7 @@ export default class App extends React.Component {
         <ContainerDiv>
           <H2>Customer questions & answers</H2>
           <Search />
-          {this.state.questions.map((question, index)=> <QuestionsAnswersVotesContainer votes={question.votes} question={question} answers={this.state.answers} key={index} />)}
+          {this.state.questions.map((question, index)=> <QuestionsAnswersVotesContainer votes={question.votes} question={question} getQuestionData={this.getQuestionData.bind(this)} answers={this.state.answers} key={index} />)}
         </ContainerDiv>
       )
     } else {
@@ -81,3 +81,9 @@ export default class App extends React.Component {
     }
   }
 }
+
+//upvoting would throw the upvoted item into a random spot in the array of questions
+
+//created a page for no questions/answers, but when one item was null the whole list would show an error
+
+//trying to render the "see more answers" two at a time, but at any time can collapse the answers to show only one again

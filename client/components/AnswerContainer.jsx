@@ -37,16 +37,23 @@ export default class AnswerContainer extends React.Component {
     this.state = {
       answers: this.props.answers,
       answer: this.props.answers[0],
-      viewCount: 2,
+      viewCount: 1,
       isExpanded: false
     }
   }
 
-  expandAnswers() {
+  renderAnswers() {
     const array = this.state.answers.slice(0, this.state.viewCount);
     return (
       array.map(answer => <ExpandedAnswer answer={answer}/>)
     )
+  }
+
+  expandAnswers() {
+    this.state.viewCount = this.state.viewCount + 2;
+    this.state.isExpanded = true;
+    const newState = Object.assign({}, this.state)
+    this.setState(newState)
   }
 
   preventNegatives() {
@@ -54,13 +61,21 @@ export default class AnswerContainer extends React.Component {
       return;
     } else {
       return (
-        <Button>
+        <Button onClick={this.expandAnswers.bind(this)}>
         <I className="fas fa-angle-down"></I>
           See more answers ({this.state.answers.length - this.state.viewCount})
         </Button>
       )
     }
   }
+
+  collapseAnswers() {
+    this.state.viewCount = 1;
+    this.state.isExpanded = false;
+    const newState = Object.assign({}, this.state)
+    this.setState(newState);    
+  }
+  
 
   render() {
     if (this.state.answers.length === 0) {
@@ -72,22 +87,22 @@ export default class AnswerContainer extends React.Component {
     if (this.state.answers.length === 1) {
       return (
         <Div>
-          {this.expandAnswers()}
+          {this.renderAnswers()}
         </Div>
       )
     } else if (this.state.isExpanded === false) {
       return (
         <Div>
-          {this.expandAnswers()}
+          {this.renderAnswers()}
           {this.preventNegatives()}
         </Div>
       )
     } else {
       return (
         <Div>
-          {this.expandAnswers()}
+          {this.renderAnswers()}
           {this.preventNegatives()}
-          <CollapseButton>
+          <CollapseButton onClick={this.collapseAnswers.bind(this)}>
             Collapse all answers
           </CollapseButton>
         </Div>
