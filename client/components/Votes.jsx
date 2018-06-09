@@ -11,13 +11,14 @@ const Li = styled.li`
   font-family: verdana,arial,helvetica,sans-serif;
   list-style: none;
   font-size: 13px;
-  padding-left: 7px;
+  padding-left: 12px;
 `
 
 const CaretLi = styled.li`
   list-style: none;
   font-size: 16px;
   padding-left: 4px;
+  color: gray;
 `
 
 const VotesLi = styled.li`
@@ -29,7 +30,6 @@ const VotesLi = styled.li`
 
 const I = styled.i`
   margin-top: -8px;
-  margin-bottom: -20px;
   font-size: 40px;
 `
 
@@ -43,7 +43,7 @@ const Votes = (props) => {
         <I className="fas fa-caret-up"></I>
       </CaretLi>
       <Li>
-        {props.votes}
+        {props.votes || 0}
       </Li>
       <VotesLi>
         votes

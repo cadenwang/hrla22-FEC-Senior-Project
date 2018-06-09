@@ -19,9 +19,6 @@ const Question = sequelize.define('question', {
   },
   votes: {
     type: Sequelize.INTEGER
-  },
-  date: {
-    type: Sequelize.STRING
   }
 }, {
   timestamps: false
@@ -54,8 +51,11 @@ timestamps: false
 Answer.belongsTo(Question)
 Question.hasMany(Answer);
 
-Question.sync({force: true});
-Answer.sync({force: true});
+// Question.sync({force: true});
+// Answer.sync({force: true});
+
+Question.sync();
+Answer.sync();
 
 module.exports = {
   Question,

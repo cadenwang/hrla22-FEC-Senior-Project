@@ -1,13 +1,27 @@
 import React from 'react';
-import Answer from './Answer.jsx';
+import AnswerContainer from './AnswerContainer.jsx';
+import styled from 'styled-components';
+
+const Div = styled.div`
+  float: left;
+  font-weight: bold;
+  font-size: 15px;
+`
+
+const AnswersDiv = styled.div`
+  margin-bottom: 20px;
+  font-family: arial,helvetica,sans-serif;
+`
+
 
 const AnswersList = (props) => {
-  
-
   return (
-    <div>
-      {props.answers.map(answer => <Answer answer={answer} /> )}
-    </div>
+    <AnswersDiv>
+      <Div>
+        Answer:
+      </Div>
+      <AnswerContainer answer={props.answers[0]} answers={props.answers}/>
+    </AnswersDiv>
   )
 }
 

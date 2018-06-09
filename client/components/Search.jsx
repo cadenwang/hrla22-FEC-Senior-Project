@@ -6,6 +6,7 @@ const Span = styled.span`
   float: left;
   margin-top: 16px;
   margin-left: 16px;
+  color: gray;
 `
 const Input = styled.input`
   padding: 0.5em;
@@ -19,13 +20,21 @@ const Input = styled.input`
 
 
 const Search = (props) => {
-
-  return (
+  if (props.noQuestions) {
+    return (
       <form>
         <Span><i class="fas fa-search"></i></Span>
-        <Input type="text" maxlength="150" placeholder="Have a question? Search for answers"></Input>
+        <Input type="text" maxlength="150"></Input>
       </form>
-  )
+    )
+  } else {
+    return (
+        <form>
+          <Span><i class="fas fa-search"></i></Span>
+          <Input type="text" maxlength="150" placeholder="Have a question? Search for answers"></Input>
+        </form>
+    )
+  }
 }
 
 export default Search;
