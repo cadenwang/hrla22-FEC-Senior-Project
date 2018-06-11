@@ -26,7 +26,7 @@ export default class QuestionsAnswersVotesContainer extends React.Component {
     if (direction === 'up') {
       vote++;
     }
-    if (direction === 'down' && vote-- > 0) {
+    if (direction === 'down' && vote >= 0) {
       vote--;
     }
     axios.put('/questions/' + id, {
@@ -40,7 +40,7 @@ export default class QuestionsAnswersVotesContainer extends React.Component {
             isUpvoted: true,
             isDownvoted: false
           })
-        } else if (direction === 'down' && vote-- > 0) {
+        } else if (direction === 'down') {
           this.setState({
             votes: data.data.votes,
             isUpvoted: false,

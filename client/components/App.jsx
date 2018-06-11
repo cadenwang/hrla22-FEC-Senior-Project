@@ -61,12 +61,37 @@ export default class App extends React.Component {
     })
   }
 
+  renderSearch(query) {
+    console.log(query.target[0].value)
+    query.preventDefault();
+    const array = [];
+    this.state.questions.forEach(question => {
+      console.log(question)
+      if (question.text && question.text.includes(query.target[0].value)) {
+        array.push(question);
+      }
+    })
+      this.state.questions = array;
+      this.setState({
+        questions: [...this.state.questions],
+        answers: [...this.state.answers]
+      })
+      console.log(this.state.questions)
+  }
+
+  onFormClear(query) {
+    console.log('got em')
+    if (!query.target.value) {
+      this.getQuestionData();
+    }
+  }
+
   render() {
     if (this.state.questions.length > 0) {
       return (
         <ContainerDiv>
           <H2>Customer questions & answers</H2>
-          <Search />
+          <Search renderSearch={this.renderSearch.bind(this)} onFormClear={this.onFormClear.bind(this)} />
           {this.state.questions.map((question, index)=> <QuestionsAnswersVotesContainer votes={question.votes} question={question} getQuestionData={this.getQuestionData.bind(this)} answers={this.state.answers} key={index} />)}
         </ContainerDiv>
       )
@@ -75,15 +100,14 @@ export default class App extends React.Component {
         <ContainerDiv>
           <H2>Have a question?</H2>
           <Div>Find answers in product info, Q&As, reviews</Div>
-          <Search noQuestions={true}/>
+          <Search noQuestions={true} />
         </ContainerDiv>
       )
     }
   }
 }
 
-//upvoting would throw the upvoted item into a random spot in the array of questions
+//upvoting throws the upvoted item into a random spot in array
 
 //created a page for no questions/answers, but when one item was null the whole list would show an error
-
-//trying to render the "see more answers" two at a time, but at any time can collapse the answers to show only one again
+//when searching, it would give me errors for null

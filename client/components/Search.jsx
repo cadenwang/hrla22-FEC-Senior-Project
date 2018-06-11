@@ -29,9 +29,9 @@ const Search = (props) => {
     )
   } else {
     return (
-        <form>
+        <form onSubmit={(e) => props.renderSearch(e)}>
           <Span><i class="fas fa-search"></i></Span>
-          <Input type="text" maxlength="150" placeholder="Have a question? Search for answers"></Input>
+          <Input onChange={(e) => props.onFormClear(e)} type="text" maxlength="150" placeholder="Have a question? Search for answers"></Input>
         </form>
     )
   }
